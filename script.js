@@ -1,3 +1,6 @@
+// Code for sidebar feature
+
+
 // Get the elements
 const sidePanel = document.getElementById('sidePanel');
 const mainContent = document.getElementById('mainContent');
@@ -20,3 +23,6 @@ closeBtn.addEventListener('click', () => {
     mainContent.classList.remove('main-content-pushed'); // Reset the width of main content
     SidePanelImg.classList.remove('hidden', "disabled"); // Show the sidebar image again
 });
+
+
+// Code for 
