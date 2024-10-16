@@ -3,63 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Sliding Side Panel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- First Box: Create Alarm Form -->
-        <div class="box left-box">
-            <h2>Create Alarm</h2>
-            <form id="alarmForm">
-                <!-- Time Input -->
-                <label for="timeInput">Time</label>
-                <div class="time-input">
-                    <input type="number" id="timeInput" placeholder="Enter time" required>
-                    <select id="timeUnit">
-                        <option value="MS">MS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="H">H</option>
-                    </select>
-                </div>
-
-                <!-- Alarm Type Dropdown -->
-                <label for="alarmType">Alarm Type</label>
-                <select id="alarmType" required>
-                    <option value="default">Select alarm type</option>
-                    <option value="sound">Sound</option>
-                    <option value="vibration">Vibration</option>
-                    <option value="notification">Notification</option>
-                </select>
-
-                <!-- Delay Input -->
-                <label for="delayInput">Delay</label>
-                <div class="time-input">
-                    <input type="number" id="delayInput" placeholder="Enter delay" required>
-                    <select id="delayUnit">
-                        <option value="MS">MS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="H">H</option>
-                    </select>
-                </div>
-
-                <!-- Create Alarm Button -->
-                <button type="submit" class="submit-button">Create Alarm</button>
-            </form>
-        </div>
-
-        <!-- Second Box: Display Alarm Details -->
-        <div class="box right-box">
-            <h2>Alarm Details</h2>
-            <div id="alarmDetails">
-                <!-- Details will be displayed here -->
-                <p>No alarm created yet.</p>
+    <main id="mainContent">
+        <img src="side-panel.png" id="SidePanelImg" class="side-panel-img" alt="side panel image">
+            <div class="new-alarm-container">
+                <h3 class="new-alarm">New Alarm</h3>
+                <h3 style="color: white; margin: 10px;">+</h3>
             </div>
+        <!-- Side panel -->
+        <div id="sidePanel" class="side-panel">
+            <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
+            <div>
+                abc
+            </div>
+            <h2>Side Panel Content</h2>
+            <p>This is some content inside the side panel.</p>
         </div>
-    </div>
-
+    </main>
+    
     <script src="script.js"></script>
 </body>
 </html>

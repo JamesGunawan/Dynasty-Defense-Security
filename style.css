@@ -1,113 +1,105 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #000000; /* Black */
-}
-
-header {
-    margin-bottom: 100px; /* Add some space between header and flip box */
-    text-align: center;
-    font-family: 'Bebas Neue', sans-serif;
-}
-
-.title {
-    color: red;
-    font-size: 1.8rem; /* Slightly larger for emphasis */
-}
-
-.flip-box {
-    background-color: transparent;
-    width: 300px;
-    height: 450px;
-    perspective: 1000px;
-}
-
-.flip-box-inner {
-    position: relative;
+html, body, main {
     width: 100%;
     height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+    background-color: black;
+    margin: 0;
+    overflow-x: hidden;
+    /* neon shadow border, might add might not */
+    /* box-shadow: inset 0 0 20px #CD0000, /* Inner shadow for neon border */
+    /*                  0 0 20px; /* Outer glow */
 }
 
-.flip-box-front, .flip-box-back {
-    position: absolute;
-    width: 100%;
-    backface-visibility: hidden;
-    background-color: #1c1c1c; /* Dark Gray for contrast */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Soft white shadow */
-    font-family: Arial, sans-serif;
+/* Container for aligning items in row */
+.new-alarm-container {
+    display: flex;
+    align-items: center;
 }
-
-.flip-box-front {
-    transform: rotateY(0deg);
-}
-
-.flip-box-back {
-    transform: rotateY(180deg);
-}
-
-h2 {
-    margin-bottom: 20px;
-    color: #ff0000; /* Red */
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ffffff; /* White for contrast */
-    border-radius: 4px;
-    background-color: #333333; /* Darker gray */
-    color: #ffffff; /* White text */
-}
-
-.submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #ff0000; /* Red */
+/* Styling for new alarm box */
+.new-alarm {
+    padding: 5px;
+    width: 90px;
+    height: 20px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 4px solid #F00;
+    background: #A70000;
+    box-shadow: 3px 2px 4px 0px #CD0000;
     color: white;
-    border: none;
-    border-radius: 4px;
+    margin-left: 100px;
+    font-weight: 400;
     cursor: pointer;
 }
 
-.submit-button:hover {
-    background-color: #cc0000; /* Darker Red */
-}
-
-.link {
-    color: #ff0000; /* Red */
+/* Side panel image styles */
+.side-panel-img {
+    font-size: 16px;
     cursor: pointer;
+    width: 35px;
+    height: 25px;
+    margin: 10px 10px;
+    transition: opacity 0.5s; /* Smooth transition for opacity */
 }
 
-.link:hover {
-    text-decoration: underline;
+/* Side panel default styles */
+.side-panel {
+    height: 100%; /* Full height */
+    width: 0; /* Start with panel hidden */
+    position: fixed; /* Stay in place */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black background */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: width 0.5s ease; /* Smooth width transition */
+    padding-top: 60px; /* Padding at the top */
+    box-shadow: 3px 0 10px rgba(0,0,0,0.5);
+    filter: drop-shadow(4px 0px 4px rgba(255, 0, 0, 0.50));
 }
 
-.flip-box-inner.flipped {
-    transform: rotateY(180deg);
+.side-panel h2, .side-panel p {
+    color: white;
+    padding: 10px 20px;
 }
 
-.error-text {
-    color: red;
-    font-size: 0.85em;
-    text-align: left;
-    display: none;
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 36px;
+    text-decoration: none;
+    color: white;
 }
 
-.white {
+.close-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Open the panel (set the width to show the panel) */
+.side-panel.open {
+    width: 250px; /* Adjust the width as needed */
+}
+
+/* Main content styles */
+#mainContent {
+    transition: margin-left 0.5s ease; /* Smooth transition for margin */
+}
+
+/* Push the main content to the right when the sidebar is open */
+.main-content-pushed {
+    margin-left: 250px; /* Same width as the side panel */
+}   
+
+/* Hide the side panel image when the panel is open */
+.side-panel-img.hidden {
+    opacity: 0; /* Hide with opacity */
+}
+
+/* disables the button and hide it */
+.side-panel-img.disabled {
+    opacity: 0; /* Hide with opacity */
+    visibility: hidden; /*Disables the button */
+}
+
+.temp {
     color: white;
 }

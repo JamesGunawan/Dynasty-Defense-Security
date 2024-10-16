@@ -1,90 +1,22 @@
-// Toggle the flip box between sign up and sign in
-document.getElementById('flipToSignIn').addEventListener('click', () => {
-    document.querySelector('.flip-box-inner').classList.add('flipped');
+// Get the elements
+const sidePanel = document.getElementById('sidePanel');
+const mainContent = document.getElementById('mainContent');
+const SidePanelImg = document.getElementById('SidePanelImg'); // Open button (img)
+const closeBtn = document.getElementById('closeBtn');
+
+// Open the side panel
+SidePanelImg.addEventListener('click', () => {
+    sidePanel.classList.add('open');
+    mainContent.classList.add('main-content-pushed'); // Change the width of main content
+    SidePanelImg.classList.add('hidden'); // Hide the sidebar image
+    setTimeout(() => {
+        SidePanelImg.classList.add('disabled'); // Disables interaction with the sidebar image
+    }, 500);
 });
 
-document.getElementById('flipToSignUp').addEventListener('click', () => {
-    document.querySelector('.flip-box-inner').classList.remove('flipped');
-});
-
-// Sign up validation
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const username = document.getElementById('signupUsername').value.trim();
-    const email = document.getElementById('signupEmail').value.trim();
-    const password = document.getElementById('signupPassword').value;
-    const confirmPassword = document.getElementById('signupConfirmPassword').value;
-
-    const passwordError = document.getElementById('passwordError');
-    const confirmPasswordError = document.getElementById('confirmPasswordError');
-
-    // Clear previous error messages
-    passwordError.style.display = 'none';
-    confirmPasswordError.style.display = 'none';
-
-    // Check password requirements
-    if (password.length < 16 || !/[A-Z]/.test(password) || !/[!@#$%^&*]/.test(password)) {
-        passwordError.textContent = 'Password must be at least 16 characters, include a capital letter, and a special character.';
-        passwordError.style.display = 'block';
-        return;
-    }
-
-    // Check if passwords match
-    if (password !== confirmPassword) {
-        confirmPasswordError.textContent = 'Passwords do not match.';
-        confirmPasswordError.style.display = 'block';
-        return;
-    }
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    if (users.some(user => user.username === username || user.email === email)) {
-        passwordError.textContent = 'Username or email already exists.';
-        passwordError.style.display = 'block';
-        return;
-    }
-
-    users.push({ username, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    alert('Signup successful! You can now sign in.');
-});
-
-// !2jOn(3idh*b*23f@C
-
-// View registered users in console
-function viewRegisteredUsers() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    console.log('Registered users:', users);
-}
-
-// Clear registered users
-function clearRegisteredUsers() {
-    localStorage.removeItem('users');
-    console.log('All users have been cleared.');
-}
-
-
-
-
-
-
-
-
-document.getElementById('alarmForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    // Get input values
-    const time = document.getElementById('timeInput').value;
-    const timeUnit = document.getElementById('timeUnit').value;
-    const alarmType = document.getElementById('alarmType').value;
-    const delay = document.getElementById('delayInput').value;
-    const delayUnit = document.getElementById('delayUnit').value;
-
-    // Display the alarm details
-    const alarmDetails = `
-        <p><strong>Time:</strong> ${time} ${timeUnit}</p>
-        <p><strong>Alarm Type:</strong> ${alarmType}</p>
-        <p><strong>Delay:</strong> ${delay} ${delayUnit}</p>
-    `;
-    document.getElementById('alarmDetails').innerHTML = alarmDetails;
+// Close the side panel
+closeBtn.addEventListener('click', () => {
+    sidePanel.classList.remove('open');
+    mainContent.classList.remove('main-content-pushed'); // Reset the width of main content
+    SidePanelImg.classList.remove('hidden', "disabled"); // Show the sidebar image again
 });

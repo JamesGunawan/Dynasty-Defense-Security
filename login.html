@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup Flip Box</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="loginstyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,6 +24,7 @@
                     <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
                     <small id="confirmPasswordError" class="error-text"></small>
                     <button type="submit" class="submit-button">Sign Up</button>
+                    <small id="signupSuccess" class="success-message">Signup successful! You can now sign in.</small>
                 </form>
                 <p class="white">Have an account? <span id="flipToSignIn" class="link">Sign in</span></p>
             </div>
@@ -43,6 +43,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="loginscript.js"></script>
 </body>
 </html>
