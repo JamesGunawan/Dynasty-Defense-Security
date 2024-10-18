@@ -5,6 +5,8 @@ html, body, main {
     margin: 0;
     overflow-x: hidden;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     /* neon shadow border, might add might not */
     /* box-shadow: inset 0 0 20px #CD0000, /* Inner shadow for neon border */
     /*                  0 0 20px; /* Outer glow */
@@ -14,12 +16,13 @@ p {
     margin: 0;
     padding: 0;
 }
+
 /* Container for aligning items in row */
 .new-alarm-container {
     display: flex;
     align-items: center;
     padding: 5px;
-    width: 91px;
+    width: 101px;
     height: 20px;
     border-radius: 5px;
     border: 4px solid #F00;
@@ -30,10 +33,7 @@ p {
     color: white;
     margin-left: 100px;
     margin-top: 80px;
-}
-/* Styling for new alarm box */
-.new-alarm {
-
+    font-family: 'Inter', sans-serif;
 }
 
 /* Side panel image styles */
@@ -44,6 +44,7 @@ p {
     height: 25px;
     margin: 10px 10px;
     transition: opacity 0.5s; /* Smooth transition for opacity */
+    position: absolute;
 }
 
 /* Side panel default styles */
@@ -110,7 +111,7 @@ p {
 .sidebar-menu-container {
     width: 100%;
     color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 /* Targets the p next to the container */
@@ -123,14 +124,59 @@ p {
     background-color: #313131;
     cursor: pointer;
 }
+
+/* design for the building container */
 .building-container {
     border-radius: 10px;
     border: 1px solid #F00;
     background: #5D0000;
-    box-shadow: 0px 4px 4px 0px rgba(205, 0, 0, 0.25);
+    box-shadow: 4px 4px 4px 0px rgba(205, 0, 0, 0.75);
     width: 400px;
     height: 500px;
-    margin-left: 100px;
+    margin-left: 210px;
     margin-top: 50px;
     color: white;
+    display: flex;
+}
+
+.building-name {
+    display: flex;
+    width: 250px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color:#bababa;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.building-name-input {
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.building-name-input::placeholder {
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+.edit-button {
+    width: 20px;    
+    height: 20px;
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 8px;
+    border-radius: 25%;
+    padding: 5px;
+}
+
+.edit-button:hover {
+    cursor: pointer;
+    background: #460000;
 }

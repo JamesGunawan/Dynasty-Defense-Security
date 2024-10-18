@@ -26,3 +26,27 @@ closeBtn.addEventListener('click', () => {
 
 
 // Code for 
+
+document.getElementById('NewAlarmButton').addEventListener('click', function() {
+    // Create a new building container
+    const buildingContainer = document.createElement('div');
+    buildingContainer.className = 'building-container';
+
+    // Create the building name div and input
+    const buildingName = document.createElement('div');
+    buildingName.className = 'building-name';
+
+    const buildingInput = document.createElement('input');
+    buildingInput.type = 'text';
+    buildingInput.className = 'building-name-input';
+    buildingInput.placeholder = 'Building Name';
+
+    // Append the input to the building name div
+    buildingName.appendChild(buildingInput);
+
+    // Append the building name div to the building container
+    buildingContainer.appendChild(buildingName);
+
+    // Append the new building container to the buildings list
+    document.getElementById('BuildingsList').appendChild(buildingContainer);
+});
