@@ -30,82 +30,124 @@ closeBtn.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', function() {
     const newAlarmButton = document.getElementById('NewAlarmButton');
     const mainContent = document.getElementById('mainContent');
-    const alarmContainer = document.querySelector('.new-alarm-container'); // Target the alarm container to insert before
+    const newAlarmContainer = document.querySelector('.new-alarm-container'); // Target the alarm container to insert before
 
     newAlarmButton.addEventListener('click', function() {
         // Create a new div for the building container
         const buildingContainer = document.createElement('div');
         buildingContainer.className = 'building-container';
 
-        // Create the building name input
-        const buildingName = document.createElement('div');
-        buildingName.className = 'building-name';
-
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'building-name-input';
-        input.placeholder = 'Building Name';
-
-        buildingName.appendChild(input);
-        buildingContainer.appendChild(buildingName);
+        // Create the structure of the building container
+        buildingContainer.innerHTML = `
+            <div style="display: flex;">
+                <div class="add-floor-container" id="addFloorButton">
+                    <h3>Add Floor</h3>
+                </div>
+                <div class="building-name">
+                    <input type="text" class="building-name-input" placeholder="Building name">
+                </div>
+                <img src="color-picker.png" alt="" class="color-picker">
+            </div>
+        `;
 
         // Insert the new building container before the alarm container
-        mainContent.insertBefore(buildingContainer, alarmContainer);
+        mainContent.insertBefore(buildingContainer, newAlarmContainer);
     });
 });
+
 
 
 // code for editing the floor
 
 document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-button'); // Select all edit buttons
+    document.querySelector('.building-container').addEventListener('click', function(event) {
+        if (event.target.classList.contains('edit-button')) {
+            const floorNameElement = event.target.nextElementSibling.querySelector('.floor-name');
 
-    editButtons.forEach(editButton => {
-        editButton.addEventListener('click', function() {
-            const floorNameElement = this.nextElementSibling.querySelector('.floor-name'); // Get the corresponding h3 element
-
-            // Create an input field with the current floor name
             const inputField = document.createElement('input');
             inputField.type = 'text';
-            inputField.value = floorNameElement.textContent; // Set the current floor name
-            inputField.className = 'floor-name-input'; // Add a class for styling if needed
+            inputField.value = floorNameElement.textContent;
+            inputField.className = 'floor-name-input';
 
-            // Replace the h3 element with the input field
             floorNameElement.replaceWith(inputField);
 
-            // Focus on the input field
             inputField.focus();
 
-            // Handle enter key to save the new name
             inputField.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter') {
                     const newFloorName = inputField.value.trim();
                     const newFloorNameElement = document.createElement('h3');
-                    newFloorNameElement.className = 'floor-name'; // Restore the class
-                    newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
+                    newFloorNameElement.className = 'floor-name';
+                    newFloorNameElement.textContent = newFloorName || "Floor Name";
                     inputField.replaceWith(newFloorNameElement);
                 }
             });
 
-            // Handle losing focus (optional)
             inputField.addEventListener('blur', function() {
                 const newFloorName = inputField.value.trim();
                 const newFloorNameElement = document.createElement('h3');
-                newFloorNameElement.className = 'floor-name'; // Restore the class
-                newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
+                newFloorNameElement.className = 'floor-name';
+                newFloorNameElement.textContent = newFloorName || "Floor Name";
                 inputField.replaceWith(newFloorNameElement);
             });
-        });
-    });
-
-    // Prevent details toggle when clicking on the edit button
-    document.querySelectorAll('.floors').forEach(floor => {
-        floor.addEventListener('click', function(event) {
-            // Prevent toggle if the input field is focused
-            if (document.activeElement.classList.contains('floor-name-input')) {
-                event.preventDefault(); // Prevent toggle if focused on the input field
-            }
-        });
+        }
     });
 });
 
+
+// code for adding a new floor
+document.getElementById('addFloorButton').addEventListener('click', function() {
+    const newFloor = document.createElement('div');
+    newFloor.innerHTML = `
+        <div style="display: flex;">
+            <img src="edit.png" alt="" class="edit-button">
+            <details>
+                <summary class="floors">
+                    <h3 class="floor-name">Floor Name</h3>
+                </summary>
+                <div class="floor-division">
+                    <div class="add-alarm-container" id="addAlarmButton">
+                        <h3>Add Alarm</h3>
+                    </div>
+                </div>
+            </details>
+        </div>
+    `;
+    document.querySelector('.building-container').appendChild(newFloor);
+});
+
+// code for adding a adding a new alarm 
+
+document.addEventListener('click', function(event) {
+    // Check if the clicked element is the "Add Alarm" button
+    if (event.target && event.target.closest('#addAlarmButton')) {
+        const floorDivision = event.target.closest('.floor-division');
+
+        // Create a new alarm block
+        const newAlarm = document.createElement('div');
+        newAlarm.classList.add('alarm-container'); // Add class
+        newAlarm.innerHTML = `
+            <div class="alarm-status-container">
+                <p>Status: Offline</p>
+                <div class="alarm-status-off"></div> <!-- red circle-->
+            </div>
+            <div class="alarm-configuration">
+                <input type="text" placeholder="Alarm Type">
+                <input type="number" placeholder="Time">
+                <input type="number" placeholder="Delay">
+            </div>
+            <input type="text" class="alarm-location" placeholder="Location:">
+            <div style="display: flex; gap: 20px;">
+                <h5>Time:</h5>
+                <h5>Delay:</h5>
+                <button id="refreshButton">
+                    <img src="refresh.png" alt="refresh button" class="refresh-button">
+                </button>
+            </div>
+        `;
+
+        // Find the add-alarm-container and insert the new alarm before it
+        const addAlarmButton = floorDivision.querySelector('.add-alarm-container');
+        floorDivision.insertBefore(newAlarm, addAlarmButton);
+    }
+});
