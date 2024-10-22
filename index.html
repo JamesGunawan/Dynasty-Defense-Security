@@ -11,18 +11,76 @@
     <main id="mainContent">
         <img src="side-panel.png" id="SidePanelImg" class="side-panel-img" alt="side panel image">
 
-        <div id="BuildingsList"></div>
-
         <div class="building-container">
             <div class="building-name">
-                <input type="text" class="building-name-input" placeholder="Building Name">
+                <input type="text" class="building-name-input" placeholder="Building name">
+            </div>
+            <div style="display: flex;">
+                <img src="edit.png" alt="" class="edit-button">
+                <details open>
+                    <summary class="floors">
+                        <!-- Floor name-->
+                        <h3 class="floor-name">Floor Name</h3>
+                    </summary>
+                    <!--floor division-->
+                    <div class="floor-division">
+                        <!-- Alarm container-->
+                        <div class="alarm-container">
+                            <!-- alarm status container-->
+                            <div class="alarm-status-container">
+                                <p3>Status : Offline</p3>
+                                <div class="alarm-status-off"></div> <!-- red circle-->
+                            </div>
+                            <div class="alarm-configuration">
+                                <input type="text" name="" id="" placeholder="Alarm Type">
+                                <input type="number" name="" id="" placeholder="Time">
+                                <input type="number" name="" id="" placeholder="Delay">
+                            </div>
+                            <input type="text" name="" id="" class="alarm-location" placeholder="Location :">
+                            <div style="display: flex; gap: 20px;">
+                                <h5>Time :</h5>
+                                <h5>Delay :</h5>
+                                <button id="refreshButton"><img src="refresh.png" alt="refresh button" class="refresh-button"></button>
+                            </div>
+                        </div>
+                        <div class="floor-division">
+                            <!-- Alarm container-->
+                            <div class="alarm-container">
+                                <!-- alarm status container-->
+                                <div class="alarm-status-container">
+                                    <p3>Status : Offline</p3>
+                                    <div class="alarm-status-off"></div> <!-- red circle-->
+                                </div>
+                                <div class="alarm-configuration">
+                                    <input type="text" name="" id="" placeholder="Alarm Type">
+                                    <input type="number" name="" id="" placeholder="Time">
+                                    <input type="number" name="" id="" placeholder="Delay">
+                                </div>
+                                <input type="text" name="" id="" class="alarm-location" placeholder="Location :">
+                                <div style="display: flex; gap: 20px;">
+                                    <h5>Time :</h5>
+                                    <h5>Delay :</h5>
+                                    <button id="refreshButton"><img src="refresh.png" alt="refresh button" class="refresh-button"></button>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                        <!-- add alarm button-->
+                        <div class="add-alarm-container" id="addAlarmButton">
+                            <h3>Add Alarm</h3>
+                        </div>
+                    </div>
+                </details>
             </div>
         </div>
+        
 
-            <div class="new-alarm-container" id="NewAlarmButton">
-                <h3>New Alarm</h3>
-            </div>
-            <h3 style="color: white; margin-top: 89px; margin-left: 10px;">+</h3>
+        <!-- Placeholder for new alarm container -->
+        <div class="new-alarm-container" id="NewAlarmButton">
+            <h3>New Alarm</h3>
+        </div>   
+        <h3 class="alarmplus">+</h3>
 
         <!-- Side panel -->
         <div id="sidePanel" class="side-panel">

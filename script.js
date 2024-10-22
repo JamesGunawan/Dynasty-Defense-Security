@@ -25,28 +25,87 @@ closeBtn.addEventListener('click', () => {
 });
 
 
-// Code for 
+// Code for inserting container
 
-document.getElementById('NewAlarmButton').addEventListener('click', function() {
-    // Create a new building container
-    const buildingContainer = document.createElement('div');
-    buildingContainer.className = 'building-container';
+document.addEventListener('DOMContentLoaded', function() {
+    const newAlarmButton = document.getElementById('NewAlarmButton');
+    const mainContent = document.getElementById('mainContent');
+    const alarmContainer = document.querySelector('.new-alarm-container'); // Target the alarm container to insert before
 
-    // Create the building name div and input
-    const buildingName = document.createElement('div');
-    buildingName.className = 'building-name';
+    newAlarmButton.addEventListener('click', function() {
+        // Create a new div for the building container
+        const buildingContainer = document.createElement('div');
+        buildingContainer.className = 'building-container';
 
-    const buildingInput = document.createElement('input');
-    buildingInput.type = 'text';
-    buildingInput.className = 'building-name-input';
-    buildingInput.placeholder = 'Building Name';
+        // Create the building name input
+        const buildingName = document.createElement('div');
+        buildingName.className = 'building-name';
 
-    // Append the input to the building name div
-    buildingName.appendChild(buildingInput);
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'building-name-input';
+        input.placeholder = 'Building Name';
 
-    // Append the building name div to the building container
-    buildingContainer.appendChild(buildingName);
+        buildingName.appendChild(input);
+        buildingContainer.appendChild(buildingName);
 
-    // Append the new building container to the buildings list
-    document.getElementById('BuildingsList').appendChild(buildingContainer);
+        // Insert the new building container before the alarm container
+        mainContent.insertBefore(buildingContainer, alarmContainer);
+    });
 });
+
+
+// code for editing the floor
+
+document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-button'); // Select all edit buttons
+
+    editButtons.forEach(editButton => {
+        editButton.addEventListener('click', function() {
+            const floorNameElement = this.nextElementSibling.querySelector('.floor-name'); // Get the corresponding h3 element
+
+            // Create an input field with the current floor name
+            const inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.value = floorNameElement.textContent; // Set the current floor name
+            inputField.className = 'floor-name-input'; // Add a class for styling if needed
+
+            // Replace the h3 element with the input field
+            floorNameElement.replaceWith(inputField);
+
+            // Focus on the input field
+            inputField.focus();
+
+            // Handle enter key to save the new name
+            inputField.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    const newFloorName = inputField.value.trim();
+                    const newFloorNameElement = document.createElement('h3');
+                    newFloorNameElement.className = 'floor-name'; // Restore the class
+                    newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
+                    inputField.replaceWith(newFloorNameElement);
+                }
+            });
+
+            // Handle losing focus (optional)
+            inputField.addEventListener('blur', function() {
+                const newFloorName = inputField.value.trim();
+                const newFloorNameElement = document.createElement('h3');
+                newFloorNameElement.className = 'floor-name'; // Restore the class
+                newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
+                inputField.replaceWith(newFloorNameElement);
+            });
+        });
+    });
+
+    // Prevent details toggle when clicking on the edit button
+    document.querySelectorAll('.floors').forEach(floor => {
+        floor.addEventListener('click', function(event) {
+            // Prevent toggle if the input field is focused
+            if (document.activeElement.classList.contains('floor-name-input')) {
+                event.preventDefault(); // Prevent toggle if focused on the input field
+            }
+        });
+    });
+});
+
