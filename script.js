@@ -28,16 +28,13 @@ closeBtn.addEventListener('click', () => {
 // Code for inserting container
 
 document.addEventListener('DOMContentLoaded', function() {
-    const newAlarmButton = document.getElementById('NewAlarmButton');
     const mainContent = document.getElementById('mainContent');
-    const newAlarmContainer = document.querySelector('.new-alarm-container'); // Target the alarm container to insert before
-
-    newAlarmButton.addEventListener('click', function() {
-        // Create a new div for the building container
+    
+    // Event delegation for the 'New Alarm' button
+    document.getElementById('NewAlarmButton').addEventListener('click', function() {
         const buildingContainer = document.createElement('div');
         buildingContainer.className = 'building-container';
-
-        // Create the structure of the building container
+        
         buildingContainer.innerHTML = `
             <div style="display: flex;">
                 <div class="add-floor-container" id="addFloorButton">
@@ -50,27 +47,41 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        // Insert the new building container before the alarm container
-        mainContent.insertBefore(buildingContainer, newAlarmContainer);
+        mainContent.insertBefore(buildingContainer, document.querySelector('.new-alarm-container'));
     });
-});
 
+    // Event delegation for 'Add Floor' button
+    mainContent.addEventListener('click', function(e) {
+        if (e.target && e.target.closest('#addFloorButton')) {
+            const newFloor = document.createElement('div');
+            newFloor.style.display = 'flex';
+            newFloor.innerHTML = `
+                <img src="edit.png" alt="" class="edit-button">
+                <details open>
+                    <summary class="floors">
+                        <h3 class="floor-name">Floor Name</h3>
+                    </summary>
+                    <div class="floor-division">
+                        <!-- Add new alarm button -->
+                        <div class="add-alarm-container" id="addAlarmButton">
+                            <h3>Add Alarm</h3>
+                        </div>
+                    </div>
+                </details>
+            `;
+            e.target.closest('.building-container').appendChild(newFloor);
+        }
+    });
 
-
-// code for editing the floor
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.building-container').addEventListener('click', function(event) {
-        if (event.target.classList.contains('edit-button')) {
-            const floorNameElement = event.target.nextElementSibling.querySelector('.floor-name');
-
+    // Event delegation for 'Edit Floor Name' button
+    mainContent.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('edit-button')) {
+            const floorNameElement = e.target.nextElementSibling.querySelector('.floor-name');
             const inputField = document.createElement('input');
             inputField.type = 'text';
             inputField.value = floorNameElement.textContent;
             inputField.className = 'floor-name-input';
-
             floorNameElement.replaceWith(inputField);
-
             inputField.focus();
 
             inputField.addEventListener('keydown', function(event) {
@@ -94,29 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-// code for adding a new floor
-document.getElementById('addFloorButton').addEventListener('click', function() {
-    const newFloor = document.createElement('div');
-    newFloor.innerHTML = `
-        <div style="display: flex;">
-            <img src="edit.png" alt="" class="edit-button">
-            <details>
-                <summary class="floors">
-                    <h3 class="floor-name">Floor Name</h3>
-                </summary>
-                <div class="floor-division">
-                    <div class="add-alarm-container" id="addAlarmButton">
-                        <h3>Add Alarm</h3>
-                    </div>
-                </div>
-            </details>
-        </div>
-    `;
-    document.querySelector('.building-container').appendChild(newFloor);
-});
-
-// code for adding a adding a new alarm 
+// code for adding a adding an alarm 
 
 document.addEventListener('click', function(event) {
     // Check if the clicked element is the "Add Alarm" button
@@ -151,3 +140,5 @@ document.addEventListener('click', function(event) {
         floorDivision.insertBefore(newAlarm, addAlarmButton);
     }
 });
+
+// code for changing the color
