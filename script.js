@@ -25,7 +25,7 @@ closeBtn.addEventListener('click', () => {
 });
 
 
-// Code for inserting container
+// Code for inserting container and adding a floor
 
 document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
@@ -72,35 +72,77 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.closest('.building-container').appendChild(newFloor);
         }
     });
+});
 
-    // Event delegation for 'Edit Floor Name' button
-    mainContent.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('edit-button')) {
-            const floorNameElement = e.target.nextElementSibling.querySelector('.floor-name');
+// code for handling editing floors while disabling <details> default toggling
+document.addEventListener('DOMContentLoaded', function() {
+    const mainContent = document.getElementById('mainContent');
+
+    // Event delegation for handling clicks on edit buttons
+    mainContent.addEventListener('click', function(event) {
+        // Handle edit button click
+        if (event.target.classList.contains('edit-button')) {
+            const editButton = event.target;
+            const floorNameElement = editButton.nextElementSibling.querySelector('.floor-name');
+
+            // Create an input field with the current floor name
             const inputField = document.createElement('input');
             inputField.type = 'text';
-            inputField.value = floorNameElement.textContent;
-            inputField.className = 'floor-name-input';
+            inputField.value = floorNameElement.textContent; // Set the current floor name
+            inputField.className = 'floor-name-input'; // Add a class for styling if needed
+
+            // Replace the h3 element with the input field
             floorNameElement.replaceWith(inputField);
+
+            // Focus on the input field
             inputField.focus();
 
+            // Handle enter key to save the new name
             inputField.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter') {
                     const newFloorName = inputField.value.trim();
                     const newFloorNameElement = document.createElement('h3');
-                    newFloorNameElement.className = 'floor-name';
-                    newFloorNameElement.textContent = newFloorName || "Floor Name";
+                    newFloorNameElement.className = 'floor-name'; // Restore the class
+                    newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
                     inputField.replaceWith(newFloorNameElement);
                 }
             });
 
+            // Handle losing focus (optional)
             inputField.addEventListener('blur', function() {
                 const newFloorName = inputField.value.trim();
                 const newFloorNameElement = document.createElement('h3');
-                newFloorNameElement.className = 'floor-name';
-                newFloorNameElement.textContent = newFloorName || "Floor Name";
+                newFloorNameElement.className = 'floor-name'; // Restore the class
+                newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
                 inputField.replaceWith(newFloorNameElement);
             });
+        }
+
+        // Handle New Alarm button click
+        if (event.target.id === 'NewAlarmButton') {
+            console.log('New Alarm button clicked');
+            // Implement your logic to create a new alarm here
+        }
+
+        // Prevent details toggle when clicking on the edit button
+        if (event.target.closest('.floors')) {
+            if (document.activeElement.classList.contains('floor-name-input')) {
+                event.preventDefault(); // Prevent toggle if focused on the input field
+            }
+        }
+    });
+
+    // Prevent default behavior for spacebar when focused on input
+    mainContent.addEventListener('keydown', function(event) {
+        if (event.key === ' ') {
+            // Do not prevent the default action if the input field is focused
+            if (document.activeElement.classList.contains('floor-name-input')) {
+                // Allow space to be entered in the input field
+                return; // Do nothing, let the input field handle it
+            } else {
+                // Prevent space from toggling details if not focused on the input
+                event.preventDefault();
+            }
         }
     });
 });
@@ -140,5 +182,3 @@ document.addEventListener('click', function(event) {
         floorDivision.insertBefore(newAlarm, addAlarmButton);
     }
 });
-
-// code for changing the color
