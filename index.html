@@ -10,6 +10,62 @@
 <body>
     <main id="mainContent">
         <img src="side-panel.png" id="SidePanelImg" class="side-panel-img" alt="side panel image">
+
+        <div class="building-container">
+            <div style="display: flex;">
+                <div class="add-floor-container" id="addFloorButton">
+                    <h3>Add Floor</h3>
+                </div>
+                <div class="building-name">
+                    <input type="text" class="building-name-input" placeholder="Building name">
+                </div>
+                <p class="delete-building-button"> &times;</p>
+            </div>
+            <!-- edit button for floor name-->
+            <div style="display: flex;">
+                <img src="edit.png" alt="" class="edit-button">
+                <details open>
+                    <!-- Floor name-->
+                    <summary class="floors">
+                        <h3 class="floor-name">Floor Name</h3>
+                    </summary>
+                    <!--floor division-->
+                    <div class="floor-division">
+                        <!-- Alarm container-->
+                        <div class="alarm-container">
+                            <!-- alarm status container-->  
+                            <div class="alarm-header-container">
+                                <p3>Status : Offline</p3>
+                                <div class="alarm-status-off"></div> <!-- red circle-->
+                                <p class="delete-alarm-button"> &times;</p>
+                            </div>
+                            <div class="alarm-configuration">
+                                <input type="text" name="" id="" placeholder="Alarm Type">
+                                <input type="number" name="" id="" placeholder="Time">
+                                <input type="number" name="" id="" placeholder="Delay">
+                            </div>
+                            <input type="text" name="" id="" class="alarm-location" placeholder="Location :">
+                            <div style="display: flex; gap: 20px;">
+                                <h5>Time :</h5>
+                                <h5>Delay :</h5>
+                                <button id="refreshButton">
+                                    <img src="refresh.png" alt="refresh button" class="refresh-button">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- add alarm button-->
+                        <div class="add-alarm-container" id="addAlarmButton">
+                            <h3>Add Alarm</h3>
+                        </div>
+                    </div>
+                </details>
+            </div>  
+        </div>
+        
+
+
         <!-- Placeholder for new alarm container -->
         <div class="new-alarm-container" id="NewAlarmButton">
             <h3>New Alarm</h3>

@@ -374,9 +374,11 @@ details {
 
 /* positioning for delete alarm button */
 .delete-alarm-button {
-    margin-top: 1px;
+    position: relative;
+    margin-top: -4px;
     cursor: pointer;
     font-size: 20px;
+    left: 30px;
 }
 
 /* centers the input texts inside alarm container */
