@@ -12,6 +12,27 @@ html, body, main {
     /*                  0 0 20px; /* Outer glow */
 }
 
+/* Custom scrollbar styles for WebKit browsers */
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #3b3b3b; /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners */
+    height: 10px; /* Height of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #F00; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners */
+    height: 40px; /* Height of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a10000; /* Color when hovering over the thumb */
+}
+
  /* Removes any default margin and padding */
 p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
@@ -226,13 +247,12 @@ details {
 }
 
 /*  palette icon styling inside the container (maybe a feature for changing colors) */
-.color-picker {
-    width: 35px;
-    height: 35px;
-    margin-top: 6px;
+.delete-building-button {
+    margin-top: 3px;
     margin-right: 10px;
     cursor: pointer;
     border-radius: 100%;
+    font-size: 35px;
 }
 
 /* edit button styling for floor name */
@@ -324,13 +344,14 @@ details {
 }
 
 /* positioning and centering for alarm status */
-.alarm-status-container {
+.alarm-header-container {
     display: flex;
     flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    
 }
 
 /* alarm status when it's off */
@@ -349,6 +370,13 @@ details {
     border-radius: 50%;         
     background-color: rgb(47, 255, 0);
     margin-left: 10px;
+}
+
+/* positioning for delete alarm button */
+.delete-alarm-button {
+    margin-top: 1px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 /* centers the input texts inside alarm container */

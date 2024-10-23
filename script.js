@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="building-name">
                     <input type="text" class="building-name-input" placeholder="Building name">
                 </div>
-                <img src="color-picker.png" alt="" class="color-picker">
+                <p class="delete-building-button"> &times;</p>
             </div>
         `;
 
@@ -151,9 +151,10 @@ document.addEventListener('click', function(event) {
         const newAlarm = document.createElement('div');
         newAlarm.classList.add('alarm-container'); // Add class
         newAlarm.innerHTML = `
-            <div class="alarm-status-container">
+            <div class="alarm-header-container">
                 <p>Status: Offline</p>
                 <div class="alarm-status-off"></div> <!-- red circle-->
+                <p class="delete-alarm-button"> &times;</p>
             </div>
             <div class="alarm-configuration">
                 <input type="text" placeholder="Alarm Type">
@@ -173,5 +174,35 @@ document.addEventListener('click', function(event) {
         // Find the add-alarm-container and insert the new alarm before it
         const addAlarmButton = floorDivision.querySelector('.add-alarm-container');
         floorDivision.insertBefore(newAlarm, addAlarmButton);
+    }
+});
+
+// code for deleting an alarm
+
+// Add event delegation for delete buttons
+mainContent.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('delete-alarm-button')) {
+        // Get the alarm container element
+        const alarmContainer = e.target.closest('.alarm-header-container').parentNode;
+        
+        // Remove the alarm container from the DOM
+        if (alarmContainer) {
+            alarmContainer.remove();
+        }
+    }
+});
+
+// code for deleting a building 
+
+// Add event delegation for delete buttons
+mainContent.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('delete-building-button')) {
+        // Get the building container element
+        const buildingContainer = e.target.closest('.building-container');
+        
+        // Remove the building container from the DOM
+        if (buildingContainer) {
+            buildingContainer.remove();
+        }
     }
 });
