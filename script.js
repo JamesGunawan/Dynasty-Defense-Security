@@ -1,19 +1,18 @@
 // Code for sidebar feature
 
-
 // Get the elements
 const sidePanel = document.getElementById('sidePanel');
 const mainContent = document.getElementById('mainContent');
-const SidePanelImg = document.getElementById('SidePanelImg'); // Open button (img)
+const sidePanelImg = document.getElementById('SidePanelImg'); // Open button (img)
 const closeBtn = document.getElementById('closeBtn');
 
 // Open the side panel
-SidePanelImg.addEventListener('click', () => {
+sidePanelImg.addEventListener('click', () => {
     sidePanel.classList.add('open');
     mainContent.classList.add('main-content-pushed'); // Change the width of main content
-    SidePanelImg.classList.add('hidden'); // Hide the sidebar image
+    sidePanelImg.classList.add('hidden'); // Hide the sidebar image
     setTimeout(() => {
-        SidePanelImg.classList.add('disabled'); // Disables interaction with the sidebar image
+        sidePanelImg.classList.add('disabled'); // Disables interaction with the sidebar image
     }, 500);
 });
 
@@ -21,20 +20,18 @@ SidePanelImg.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     sidePanel.classList.remove('open');
     mainContent.classList.remove('main-content-pushed'); // Reset the width of main content
-    SidePanelImg.classList.remove('hidden', "disabled"); // Show the sidebar image again
+    sidePanelImg.classList.remove('hidden', 'disabled'); // Show the sidebar image again
 });
 
-
 // Code for inserting container and adding a floor
-
 document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
-    
+
     // Event delegation for the 'New Alarm' button
     document.getElementById('NewAlarmButton').addEventListener('click', function() {
         const buildingContainer = document.createElement('div');
         buildingContainer.className = 'building-container';
-        
+
         buildingContainer.innerHTML = `
             <div style="display: flex;">
                 <div class="add-floor-container" id="addFloorButton">
@@ -74,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// code for handling editing floors while disabling <details> default toggling
+// Code for handling editing floors while disabling <details> default toggling
 document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
 
@@ -93,8 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Replace the h3 element with the input field
             floorNameElement.replaceWith(inputField);
-
-            // Focus on the input field
             inputField.focus();
 
             // Handle enter key to save the new name
@@ -112,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             inputField.addEventListener('blur', function() {
                 const newFloorName = inputField.value.trim();
                 const newFloorNameElement = document.createElement('h3');
-                newFloorNameElement.className = 'floor-name'; // Restore the class
+                newFloorNameElement .className = 'floor-name'; // Restore the class
                 newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
                 inputField.replaceWith(newFloorNameElement);
             });
@@ -121,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle New Alarm button click
         if (event.target.id === 'NewAlarmButton') {
             console.log('New Alarm button clicked');
-            // Implement your logic to create a new alarm here
         }
 
         // Prevent details toggle when clicking on the edit button
@@ -147,8 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// code for adding a adding an alarm 
-
+// Code for adding an alarm
 document.addEventListener('click', function(event) {
     // Check if the clicked element is the "Add Alarm" button
     if (event.target && event.target.closest('#addAlarmButton')) {

@@ -24,10 +24,9 @@ summary {
     align-items: center;
     cursor: pointer;
 }
-
 details {
-    display: inline-block; /* Makes it take only the space it needs */
-    max-height: 0px; /* Adjust as necessary */
+    display: inline-block;
+    max-height: 0px;
 }   
   
 /* Container for aligning items in row */
@@ -48,12 +47,10 @@ details {
     margin-top: 100px;
     font-family: 'Inter', sans-serif;
     transition: transform 0.3s ease;
-    
 }
-.new-alarm-container:hover{
+.new-alarm-container:hover{ /*animation on hover */
     transform: scale(1.1);
 }
-
 /* + text alignment for alarm new alarm button */
 .alarmplus { 
     transition: transform 0.3s ease;
@@ -61,6 +58,7 @@ details {
     margin-top: 109px; 
     margin-left: 10px;
 }
+
 /* Side panel image styles */
 .side-panel-img {
     font-size: 16px;
@@ -71,11 +69,9 @@ details {
     transition: opacity 0.5s; /* Smooth transition for opacity */
     position: absolute;
 }
-
-.side-panel-img:hover {
+.side-panel-img:hover { /* animation on hover */
     transform: scale(1.1);
 }
-
 /* Side panel default styles */
 .side-panel {
     height: 100%; /* Full height */
@@ -90,7 +86,7 @@ details {
     box-shadow: 3px 0 10px rgba(0,0,0,0.5);
     filter: drop-shadow(4px 0px 4px rgba(255, 0, 0, 0.50));
 }
-
+/*targets the text inside the side panels */
 .side-panel h2, .side-panel p {
     color: white;
     padding: 10px 20px;
@@ -104,36 +100,37 @@ details {
     font-size: 36px;
     text-decoration: none;
     color: white;
+    transition: transform 0.3s;
 }
-
-.close-btn:hover {
+.close-btn:hover { /* animation on hover */
     color: #f1f1f1;
+    transform: scale(1.2);
 }
 
-/* Open the panel (set the width to show the panel) */
+/* side panel width when opened */
 .side-panel.open {
     width: 250px; /* Adjust the width as needed */
 }
 
-/* Main content styles */
+/* adds animation for smooth sliding */
 #mainContent {
-    transition: margin-left 0.5s ease; /* Smooth transition for margin */
+    transition: margin-left 0.5s ease;
 }
 
 /* Push the main content to the right when the sidebar is open */
 .main-content-pushed {
-    margin-left: 250px; /* Same width as the side panel */
+    margin-left: 250px;
 }   
 
 /* Hide the side panel image when the panel is open */
 .side-panel-img.hidden {
-    opacity: 0; /* Hide with opacity */
+    opacity: 0; 
 }
 
 /* Disables the button and hide it */
 .side-panel-img.disabled {
-    opacity: 0; /* Hide with opacity */
-    visibility: hidden; /*Disables the button */
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Sidebar menu options div for each button */
@@ -170,27 +167,13 @@ details {
     overflow-y: auto;
 }
 
-/* Custom scrollbar styles for WebKit browsers */
+/* hides scrollbar inside the container and "disables" the width to avoid pushing elements */
 .building-container::-webkit-scrollbar {
-    width: 0px; /* Adjust the width of the scrollbar */
+    visibility: hidden;
+    width: 0px;
 }
 
-.building-container::-webkit-scrollbar-track {
-    background: #3b3b3b; /* Background of the scrollbar track */
-    border-radius: 10px; /* Rounded corners */
-    height: 10px;
-}
-
-.building-container::-webkit-scrollbar-thumb {
-    background: #F00; /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners */
-    height: 40px;
-}
-
-.building-container::-webkit-scrollbar-thumb:hover {
-    background: #a10000; /* Color when hovering over the thumb */
-}
-
+/* box container for building container name */
 .building-name {
     display: flex;
     width: 250px;
@@ -205,6 +188,7 @@ details {
     margin-top: 10px;
 }
 
+/* text input styling for building container name */
 .building-name-input {
     background: none;
     border: none;
@@ -213,12 +197,13 @@ details {
     text-align: center;
     font-family: 'Inter', sans-serif;
 }
-
+/* changes the color of the text placeholder */
 .building-name-input::placeholder {
     color: white;
     font-family: 'Inter', sans-serif;
 }
 
+/* styling for add floor container */
 .add-floor-container {
     color: white;
     display: flex;
@@ -240,11 +225,7 @@ details {
     margin-top: 5px;
 }
 
-.floor-name-container {
-    display: flex;
-    margin-top: 400px;
-}
-
+/*  palette icon styling inside the container (maybe a feature for changing colors) */
 .color-picker {
     width: 35px;
     height: 35px;
@@ -254,6 +235,7 @@ details {
     border-radius: 100%;
 }
 
+/* edit button styling for floor name */
 .edit-button {
     width: 20px;    
     height: 20px;
@@ -261,35 +243,27 @@ details {
     margin-top: 40px;
     margin-right: 10px;
     margin-left: 5px;
-}
-
-.edit-button:hover {
     cursor: pointer;
 }
 
+/* style for floor names and an "underline" */
 .floors {
     border-bottom:  3px solid #8D8D8D;;
     margin-top: 40px;
     border-radius: 1px;
 }
 
+/* floor name text styling */
 .floor-name {
     color: white;
     text-align: center;
     width: 100%;
-    font-weight: 100; /* Correct font-weight value */
-    font-size: 17px; /* Match the font size */
+    font-weight: 100; 
+    font-size: 17px; /* Match the font size for editing mode and non editing mode */
     font-family: 'Inter', sans-serif;
 }
 
-.floor-division {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 35px;
-    flex: 1;
-}
-
+/* editing mode for floor name */
 .floor-name-input {
     background: none;
     border: none;
@@ -298,10 +272,20 @@ details {
     text-align: center;
     font-family: 'Inter', sans-serif;
     width: 100%; 
-    font-weight: 100; /* Correct font-weight value */
+    font-weight: 100;
     font-size: 16px; /* Match the font size */
 }
 
+/* div for keeping the alarms in their own floors */
+.floor-division {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 35px;
+    flex: 1;
+}
+
+/* styling for adding an alarm */
 .add-alarm-container {
     color: white;
     display: flex;
@@ -322,6 +306,7 @@ details {
     margin-left: 60px;
 }
 
+/* alarm container styling */
 .alarm-container {
     border-radius: 25px;
     border: 1px solid #F00;
@@ -338,6 +323,7 @@ details {
     gap: 10px;
 }
 
+/* positioning and centering for alarm status */
 .alarm-status-container {
     display: flex;
     flex-direction: row;
@@ -347,6 +333,7 @@ details {
     margin-top: 10px;
 }
 
+/* alarm status when it's off */
 .alarm-status-off {
     width: 10px;                
     height: 10px;               
@@ -355,11 +342,16 @@ details {
     margin-left: 10px;
 }
 
-.alarm-configuration {
-    text-align: center;
-
+/* alarm status for when it's on */
+.alarm-status-on {
+    width: 10px;                
+    height: 10px;               
+    border-radius: 50%;         
+    background-color: rgb(47, 255, 0);
+    margin-left: 10px;
 }
 
+/* centers the input texts inside alarm container */
 .alarm-configuration, input {
     border-radius: 5px;
     display: flex;
@@ -368,30 +360,32 @@ details {
     text-align: center;
 }
 
+/* hides and disables the arrow up/down button when type input="number" */
 .alarm-configuration input[type="number"]::-webkit-inner-spin-button,
 .alarm-configuration input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none; /* Hide the spin buttons */
     margin: 0; /* Reset margin */
 }
 
+/* alarm location styling */
 .alarm-location {
     background: none;
     border: none;
     outline: none;
     color: white;
 }
-
+/* alarm location placeholder color */
 .alarm-location::placeholder {
     color: white;
 }
 
+/* changes the color for refresh button */
 #refreshButton {
     background-color: black;
 }
 
+/* width and height for button image */
 .refresh-button {
     width: 10px;
     height: 10px;
 }
-
-

@@ -11,21 +11,6 @@
     <main id="mainContent">
         <img src="side-panel.png" id="SidePanelImg" class="side-panel-img" alt="side panel image">
 
-        <div class="building-container">
-            <div style="display: flex;">
-                <div class="add-floor-container" id="addFloorButton">
-                    <h3>Add Floor</h3>
-                </div>
-                <div class="building-name">
-                    <input type="text" class="building-name-input" placeholder="Building name">
-                </div>
-                <img src="color-picker.png" alt="Color Picker" class="color-picker" id="colorPickerImage">
-                <input type="color" id="colorPicker" style="display: none;">
-            </div>  
-        </div>
-        
-
-
         <!-- Placeholder for new alarm container -->
         <div class="new-alarm-container" id="NewAlarmButton">
             <h3>New Alarm</h3>
@@ -36,7 +21,7 @@
         <div id="sidePanel" class="side-panel">
             <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
             <div class="sidebar-menu-container">
-                <p>User Settings</p>
+                <p id="userSettings">User Settings</p>
             </div>
             <div class="sidebar-menu-container">
                 <p>Placeholder Feature</p>
@@ -52,7 +37,6 @@
             </div>
         </div>
     </main>
-    
     <script src="script.js"></script>
 </body>
 </html>
