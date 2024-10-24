@@ -107,3 +107,8 @@ function clearRegisteredUsers() {
     localStorage.removeItem('users');
     console.log('All users have been cleared.');
 }
+
+// about us
+//version of the app
+// alarm number
+//alarm types

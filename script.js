@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             newFloor.style.display = 'flex';
             newFloor.innerHTML = `
                 <img src="edit.png" alt="" class="edit-button">
+                <p class="delete-floor-button">&times;</p>
                 <details open>
                     <summary class="floors">
                         <h3 class="floor-name">Floor Name</h3>
@@ -72,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Code for handling editing floors while disabling <details> default toggling
+
 document.addEventListener('DOMContentLoaded', function() {
     const mainContent = document.getElementById('mainContent');
 
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle edit button click
         if (event.target.classList.contains('edit-button')) {
             const editButton = event.target;
-            const floorNameElement = editButton.nextElementSibling.querySelector('.floor-name');
+            const floorNameElement = editButton.closest('div').querySelector('.floor-name');
 
             // Create an input field with the current floor name
             const inputField = document.createElement('input');
@@ -107,20 +109,16 @@ document.addEventListener('DOMContentLoaded', function() {
             inputField.addEventListener('blur', function() {
                 const newFloorName = inputField.value.trim();
                 const newFloorNameElement = document.createElement('h3');
-                newFloorNameElement .className = 'floor-name'; // Restore the class
+                newFloorNameElement.className = 'floor-name'; // Restore the class
                 newFloorNameElement.textContent = newFloorName || "Floor Name"; // Default if empty
                 inputField.replaceWith(newFloorNameElement);
             });
         }
 
-        // Handle New Alarm button click
-        if (event.target.id === 'NewAlarmButton') {
-            console.log('New Alarm button clicked');
-        }
-
         // Prevent details toggle when clicking on the edit button
         if (event.target.closest('.floors')) {
-            if (document.activeElement.classList.contains('floor-name-input')) {
+            const inputField = document.querySelector('.floor-name-input');
+            if (inputField) {
                 event.preventDefault(); // Prevent toggle if focused on the input field
             }
         }
@@ -131,8 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.key === ' ') {
             // Do not prevent the default action if the input field is focused
             if (document.activeElement.classList.contains('floor-name-input')) {
-                // Allow space to be entered in the input field
-                return; // Do nothing, let the input field handle it
+                return; // Allow space to be entered in the input field
             } else {
                 // Prevent space from toggling details if not focused on the input
                 event.preventDefault();
@@ -140,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 // Code for adding an alarm
 document.addEventListener('click', function(event) {
@@ -205,4 +203,26 @@ mainContent.addEventListener('click', function(e) {
             buildingContainer.remove();
         }
     }
+});
+
+// code for deleting a floor
+
+document.addEventListener('DOMContentLoaded', function() {
+    const mainContent = document.getElementById('mainContent');
+
+    // Event delegation for handling clicks on delete floor buttons
+    mainContent.addEventListener('click', function(event) {
+        // Check if the clicked element is a delete floor button
+        if (event.target.classList.contains('delete-floor-button')) {
+            const deleteButton = event.target;
+            
+            // Find the closest div that wraps the edit button, delete button, and details (the floor container)
+            const floorContainer = deleteButton.closest('div');
+            
+            if (floorContainer) {
+                // Remove the entire floor container
+                floorContainer.remove();
+            }
+        }
+    });
 });

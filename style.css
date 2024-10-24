@@ -266,6 +266,15 @@ details {
     cursor: pointer;
 }
 
+/* button position and styling for delete floor button */
+.delete-floor-button {
+    margin-top: 34px;
+    font-size: 30px;
+    position: relative;
+    left: -5px;
+    cursor: pointer;
+}
+
 /* style for floor names and an "underline" */
 .floors {
     border-bottom:  3px solid #8D8D8D;;
@@ -419,3 +428,4 @@ details {
     width: 10px;
     height: 10px;
 }
+
