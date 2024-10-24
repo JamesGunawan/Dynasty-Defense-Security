@@ -10,6 +10,40 @@
 <body>
     <main id="mainContent">
         <img src="side-panel.png" id="SidePanelImg" class="side-panel-img" alt="side panel image">
+
+        <div class="building-container">
+            <div style="display: flex;">
+                <div class="add-floor-container" id="addFloorButton">
+                    <h3>Add Floor</h3>
+                </div>
+                <div class="building-name">
+                    <input type="text" class="building-name-input" placeholder="Building name">
+                </div>
+                <p class="delete-building-button"> &times;</p>
+            </div>
+            <!-- edit button for floor name-->
+            <div style="display: flex;">
+                <img src="edit.png" alt="" class="edit-button">
+                <p class="delete-floor-button">&times;</p>
+                <details open>
+                    <!-- Floor name-->
+                    <summary class="floors">
+                        <h3 class="floor-name">Floor Name</h3>
+                    </summary>
+                    <!--floor division-->
+                    <div class="floor-division">
+                       
+                        <!-- add alarm button-->
+                        <div class="add-alarm-container" id="addAlarmButton">
+                            <h3>Add Alarm</h3>
+                        </div>
+                    </div>
+                </details>
+            </div>  
+        </div>
+        
+
+
         <!-- Placeholder for new alarm container -->
         <div class="new-alarm-container" id="NewAlarmButton">
             <h3>New Alarm</h3>
