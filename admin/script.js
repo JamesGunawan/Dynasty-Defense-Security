@@ -1,3 +1,19 @@
+function checkAdminAccess() {
+    // Retrieve users from localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    // Find the currently logged-in user
+    const currentUser = users.find(user => user.isLoggedIn);
+
+    // If no user is logged in or the logged-in user is not an admin, redirect to login page
+    if (!currentUser || !currentUser.isAdmin) {
+        window.location.href = '../login/login.html'; // Adjust the path as needed
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', checkAdminAccess);
+
 // Code for sidebar feature
 
 // Get the elements
