@@ -19,7 +19,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     const passwordError = document.getElementById('passwordError');
     const confirmPasswordError = document.getElementById('confirmPasswordError');
     const signupSuccess = document.getElementById('signupSuccess');
-
+    
     // Clear previous error messages
     passwordError.style.display = 'none';
     confirmPasswordError.style.display = 'none';
@@ -47,8 +47,21 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         return;
     }
 
-    // Save the new user to localStorage
-    users.push({ username, email, password });
+    // Check if it's an admin account and process the username
+    const isAdmin = username.startsWith('!AdminAccount:#');
+    let actualUsername = username;
+    if (isAdmin) {
+        actualUsername = username.slice(14).replace(/^#/, ''); // Remove '!AdminAccount:#' prefix and any leading '#'
+    }
+
+    // Save the new user to localStorage with isLoggedIn set to false and isAdmin flag
+    users.push({ 
+        username: actualUsername, 
+        email, 
+        password, 
+        isLoggedIn: false,
+        isAdmin: isAdmin
+    });
     localStorage.setItem('users', JSON.stringify(users));
 
     // Clear form fields
@@ -69,7 +82,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     }, 2000); // 2 second delay
 });
 
-// Sign-in validation and redirect to index.html
+// Sign-in validation and redirect
 document.getElementById('signinForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -86,9 +99,18 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
         user.password === signinPassword
     );
 
-    if (validUser ) {
-        // Redirect to index.html in the index folder
-        window.location.href = '../index/index.html';
+    if (validUser) {
+        // Set the current user as logged in
+        users.forEach(user => user.isLoggedIn = false); // Reset all users' logged-in status
+        validUser.isLoggedIn = true; // Set the valid user as logged in
+        localStorage.setItem('users', JSON.stringify(users)); // Update localStorage
+
+        // Redirect based on user type
+        if (validUser.isAdmin) {
+            window.location.href = '../admin/index.html';
+        } else {
+            window.location.href = '../index/index.html';
+        }
     } else {
         alert('Invalid username, email, or password.');
     }
@@ -108,7 +130,7 @@ function clearRegisteredUsers() {
     console.log('All users have been cleared.');
 }
 
-// about us
-//version of the app
-// alarm number
-//alarm types
+    // about us
+    //version of the app
+    // alarm number
+    //alarm types
