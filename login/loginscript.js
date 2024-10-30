@@ -117,20 +117,3 @@ document.getElementById('signinForm').addEventListener('submit', function(event)
 });
 
 // !2jOn(3idh*b*23f@C
-
-// View registered users in console
-function viewRegisteredUsers() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    console.log('Registered users:', users);
-}
-
-// Clear registered users
-function clearRegisteredUsers() {
-    localStorage.removeItem('users');
-    console.log('All users have been cleared.');
-}
-
-    // about us
-    //version of the app
-    // alarm number
-    //alarm types
