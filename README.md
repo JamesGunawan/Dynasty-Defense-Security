@@ -20,7 +20,7 @@ A web-based security management system for managing building alarms and security
 - Guest mode access option
 
 ### Admin Features
-- Create an admin account by typing !AdminAccount:#**username**
+- Create an admin account by typing !AdminAccount:#***username***
 - Dedicated admin dashboard
 - User management capabilities:
   - View all users
