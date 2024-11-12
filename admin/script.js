@@ -1,4 +1,3 @@
-// Checks if the user is an admin, if not, return to login page
 function checkAdminAccess() {
     // Retrieve users from localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];

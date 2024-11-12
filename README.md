@@ -34,6 +34,7 @@ Another concern is unauthorized access to the admin panel, which could lead to d
 - Guest mode access option
 
 ### Admin Features
+- Create an admin account by typing !AdminAccount:#***username***
 - Dedicated admin dashboard
 - User management capabilities:
   - View all users
