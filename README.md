@@ -7,6 +7,20 @@ Wireframe link : https://www.figma.com/design/apiRqwUQ7A4uDVWWhbMPnw/Dynasty-Def
 
 A web-based security management system for managing building alarms and security configurations.
 
+## Security Concerns
+
+### Password Storage
+One of the primary security concerns is that user passwords are saved in local storage. Storing sensitive information like passwords in local storage can expose them to potential attacks.
+
+**Addressing the Concern:**
+- **User  Awareness:** Users are advised to NOT put any REAL passwords or any sensitive information.
+
+### Admin Panel Access
+Another concern is unauthorized access to the admin panel, which could lead to data breaches or manipulation.
+
+**Addressing the Concern:**
+- **Role-Based Access Control:** Access to the admin panel is restricted based on user roles. Only users with the appropriate permissions can access sensitive areas of the application.
+
 ## Features
 
 ### User Authentication
